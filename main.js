@@ -5,23 +5,27 @@ const btn = document.querySelector('#randomize');
 
 const storyText = 'It was 94 fahrenheit outside, so :insertx: went for a walk. When they got to :inserty:, they stared in horror for a few moments, then :insertz:. Bob saw the whole thing, but was not surprised — :insertx: weighs 300 pounds, and it was a hot day.';
 const insertX = ['Willy the Goblin', 'Big Daddy', 'Father Christmas'];
-const itemX = randomValueFromArray(insertX);
 const insertY = ['the soup kitchen', 'Disneyland', 'the White House'];
-const itemY = randomValueFromArray(insertY);
 const insertZ = ['spontaneously combusted', 'melted into a puddle on the sidewalk', 'turned into a slug and crawled away'];
-const itemZ = randomValueFromArray(insertZ);
+
 let newStory;
 
 function randomValueFromArray(arr) {
     const random = Math.floor(Math.random() * arr.length);
+    console.log(random);
     return arr[random];
 }
 
 function result() {
     newStory = storyText;
-    newStory = newStory.replace(':insertx:', itemX);
-    newStory = newStory.replace(':inserty:', itemY);
-    newStory = newStory.replace(':insertz:', itemZ);
+
+    const itemX = randomValueFromArray(insertX);
+    const itemY = randomValueFromArray(insertY);
+    const itemZ = randomValueFromArray(insertZ);
+
+    newStory = newStory.replaceAll(':insertx:', itemX);
+    newStory = newStory.replaceAll(':inserty:', itemY);
+    newStory = newStory.replaceAll(':insertz:', itemZ);
 
     if (customName !== '') {
         newStory = newStory.replace('Bob', customName.value)
